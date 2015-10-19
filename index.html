@@ -95,29 +95,30 @@ function playGame() {
 
 	// //version3
 
-if (genericResponses.length >0){
-		newResponse = Math.floor(Math.random()*genericResponses.length);
-		responseNumber = newResponse;
-		computer.innerHTML = genericResponses[responseNumber];
-		genericResponses.splice(responseNumber,1);
-	} else {
-		computer.innerHTML = "I am done talking to you. You may leave now.";
-		human.className="displayNone";
-		button.className="displayNone";
-		setTimeout(endGame,2000);
+// if (genericResponses.length >0){
+// 		newResponse = Math.floor(Math.random()*genericResponses.length);
+// 		responseNumber = newResponse;
+// 		computer.innerHTML = genericResponses[responseNumber];
+// 		genericResponses.splice(responseNumber,1);
+// 	} else {
+// 		computer.innerHTML = "I am done talking to you. You may leave now.";
+// 		human.className="displayNone";
+// 		button.className="displayNone";
+// 		setTimeout(endGame,2000);
+		
 		// //version4
-	// humanMsg = (human.value).toLowerCase();
-	// if (humanMsg.indexOf("good") !== -1){
-	// 	computerMsg = "That is good for you.";
-	// }else if (humanMsg.indexOf("bad") !== -1){
-	// 	computerMsg = "You live a sad life.";
-	// }else {
-	// 	computerMsg = "You know nothing.";
-	// }
-	// computer.innerHTML = computerMsg;
+	humanMsg = (human.value).toLowerCase();
+	if (humanMsg.indexOf("good") !== -1){
+		computerMsg = "That is good for you.";
+	}else if (humanMsg.indexOf("bad") !== -1){
+		computerMsg = "You live a sad life.";
+	}else {
+		computerMsg = "You know nothing.";
+	}
+	computer.innerHTML = computerMsg;
 	//3. wipe the text in the player input field 
 	human.value = "";
-}
+
 function endGame(){
 	////.assign() leaves the back button working
 	////.replace() disables the back button by replacing the location in the history

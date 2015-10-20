@@ -9,9 +9,9 @@
 </head>
 <body>
 
-<h1>Electric Dreams V2</h1>
+<h1>Electric Dreams V3</h1>
 
-<p id = "computer">Hi, how are you today?</p>
+<p id = "computer">Do you want to play a game?</p>
 
 <input id = "human" type = "text" placeholder = "Please Type Response">
 
@@ -37,9 +37,9 @@ var computerMsg = "";//will hold the computer text displayed to the player each 
 //new//
 var questionTrack = "start";
 var genericResponses = [
-					"Good for you.",
-					"You are a loser.",
-					"I like you."
+					"Go jump in lake.",
+					"Catch fish.",
+					"Whatever."
 						];
 //will be populated with messages to respond to the player
 
@@ -107,24 +107,141 @@ function playGame() {
 // 		setTimeout(endGame,2000);
 		
 		// //version4
+	// 
+
+
+
+	// //version5
+	//switch questionTrack (gameState type thing)
 	humanMsg = (human.value).toLowerCase();
-	if (humanMsg.indexOf("good") !== -1){
-		computerMsg = "That is good for you.";
-	}else if (humanMsg.indexOf("bad") !== -1){
-		computerMsg = "You live a sad life.";
-	}else {
-		computerMsg = "You know nothing.";
+	switch (questionTrack) {
+		case "start":
+		firstAnalysis();
+		break;
+		
+		case "eyecolor":
+		eyecolorAnalysis();
+		break;
+		
+		case "coke":
+		eyecolorAnalysis();
+		break;
+		
+		case "brown":
+		eyecolorAnalysis();
+		break;
+
+		case "yousuck":
+		firstAnalysis();
+		break;
+		
+		case "pespi":
+		catAnalysis();
+		break;
+
+		case "ok":
+		cokeAnalysis();
+		break;
+		
+		case "alien":
+		cokeAnalysis();
+		break;
+
+		case "dogOwner":
+		dogOwnerAnalysis();
+		break;
+		
+		default:
+		genericResponse();
+		break;
 	}
 	computer.innerHTML = computerMsg;
+	////////////////////////
 	//3. wipe the text in the player input field 
 	human.value = "";
+}
+function genericResponse(){
+		// //version3
+	if (genericResponses.length >0){
+		newResponse = Math.floor(Math.random()*genericResponses.length);
+		responseNumber = newResponse;
+		computerMsg = genericResponses[responseNumber];
+		genericResponses.splice(responseNumber,1);
+	} else {
+		computerMsg = "I am done talking to you. You may leave now.";
+		human.className="displayNone";
+		button.className="displayNone";
+		setTimeout(endGame,2000);
+	}
+}
+function firstAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "What color are your eyes?";
+		questionTrack = "eyecolor";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "You suck! Lets play anyways.";
+		questionTrack = "yousuck";
+	}else {
+		genericResponse();
+	}
+}
+
+function eyecolorAnalysis(){
+	if (humanMsg.indexOf("blue") !== -1){
+		computerMsg = "You must be smart. Do you like Coke or Pepsi?";
+		questionTrack = "coke";
+	}else if (humanMsg.indexOf("brown") !== -1){
+		computerMsg = "You must be SUPER smart! ";
+		questionTrack = "supersmart";
+	}else {
+		genericResponse();
+	}
+}
+
+function cokeAnalysis(){
+	if (humanMsg.indexOf("ok") !== -1){
+		computerMsg = "What color are your eyes?";
+		questionTrack = "ok";
+	}else if (humanMsg.indexOf("green") !== -1){
+		computerMsg = "You must be an alien";
+		questionTrack = "alien";
+	}else {
+		genericResponse();
+	}
+}
+
+function catAnalysis(){
+	if (humanMsg.indexOf("Pepsi") !== -1){
+		computerMsg = "That is strange. I was sure you were a coke person.";
+		questionTrack = "pespi";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "Then you must be a reptile person. Do you like snakes?";
+		questionTrack = "snake";
+	}else {
+		genericResponse();
+	}
+}
+
+function dogOwnerAnalysis(){
+	if (humanMsg.indexOf("yes") !== -1){
+		computerMsg = "What is the name of your dog?";
+		questionTrack = "dogName";
+	}else if (humanMsg.indexOf("no") !== -1){
+		computerMsg = "I think you should get one. Do you prefer big or small dogs?";
+		questionTrack = "dogSize";
+	}else {
+		genericResponse();
+	}
+}
+
+
 
 function endGame(){
 	////.assign() leaves the back button working
 	////.replace() disables the back button by replacing the location in the history
 	location.assign("http://en.wikipedia.org/wiki/Electric_Dreams_(film)");
 }
-	}
+	
 
 
 

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Electric Dreams</title>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+	<title>Electric Dream</title>
 
 	<style type="text/css">
 	/*style the computer text, input, and button*/
@@ -9,11 +10,11 @@
 </head>
 <body>
 
-<h1>Electric Dreams V3</h1>
+<h1>ELECTRIC DREAMS</h1>
 
 <p id = "computer">Do you want to play a game?</p>
 
-<input id = "human" type = "text" placeholder = "Please Type Response">
+<input id = "human" type = "text" placeholder = "Type response here.">
 
 <button>CLICK</button>
 
@@ -37,9 +38,9 @@ var computerMsg = "";//will hold the computer text displayed to the player each 
 //new//
 var questionTrack = "start";
 var genericResponses = [
-					"Go jump in lake.",
-					"Catch fish.",
-					"Whatever."
+					"Go jump in lake? yes or no",
+					"Catch fish? yes or no",
+					"Whatever? yes or no",
 						];
 //will be populated with messages to respond to the player
 
@@ -119,37 +120,50 @@ function playGame() {
 		firstAnalysis();
 		break;
 		
+		
+		case "yousuck":
+		firstAnalysis();
+		break;
+
 		case "eyecolor":
 		eyecolorAnalysis();
 		break;
 		
-		case "coke":
-		eyecolorAnalysis();
+		case "sodapop":
+		sodapopAnalysis();
 		break;
 		
 		case "brown":
 		eyecolorAnalysis();
 		break;
 
-		case "yousuck":
-		firstAnalysis();
-		break;
-		
-		case "pespi":
-		catAnalysis();
-		break;
-
-		case "ok":
+		case "coke":
 		cokeAnalysis();
 		break;
 		
-		case "alien":
-		cokeAnalysis();
+		case "pepsi":
+		pepsiAnalysis();
 		break;
 
-		case "dogOwner":
-		dogOwnerAnalysis();
+		// case "creature":
+		// creatureAnalysis();
+		// break;
+
+		// case "planet":
+		// alienplanetAnalysis();
+		// break;
+
+		case "alienplanet":
+		alienplanetAnalysis();
 		break;
+
+		// case "creature":
+		// cokeAnalysis();
+		// break;
+
+		// case "dogOwner":
+		// dogOwnerAnalysis();
+		// break;
 		
 		default:
 		genericResponse();
@@ -179,7 +193,7 @@ function firstAnalysis(){
 		computerMsg = "What color are your eyes?";
 		questionTrack = "eyecolor";
 	}else if (humanMsg.indexOf("no") !== -1){
-		computerMsg = "You suck! Lets play anyways.";
+		computerMsg = "You suck! Lets play anyways. Yes?";
 		questionTrack = "yousuck";
 	}else {
 		genericResponse();
@@ -189,46 +203,52 @@ function firstAnalysis(){
 function eyecolorAnalysis(){
 	if (humanMsg.indexOf("blue") !== -1){
 		computerMsg = "You must be smart. Do you like Coke or Pepsi?";
-		questionTrack = "coke";
+		questionTrack = "sodapop";
 	}else if (humanMsg.indexOf("brown") !== -1){
-		computerMsg = "You must be SUPER smart! ";
-		questionTrack = "supersmart";
-	}else {
-		genericResponse();
-	}
-}
-
-function cokeAnalysis(){
-	if (humanMsg.indexOf("ok") !== -1){
-		computerMsg = "What color are your eyes?";
-		questionTrack = "ok";
+		computerMsg = "You must be SUPER smart! Do you like Coke or Pepsi?";
+		questionTrack = "sodapop";
 	}else if (humanMsg.indexOf("green") !== -1){
-		computerMsg = "You must be an alien";
-		questionTrack = "alien";
+		computerMsg = " Then you must be an amphibian person. Are you from Neptune or Jupiter?";
+		questionTrack = "alienplanet";
+	}else if (humanMsg.indexOf("hazel") !== -1){
+		computerMsg = "Then you must be a reptile person. Are you from Neptune or Jupiter?";
+		questionTrack = "alienplanet";
 	}else {
 		genericResponse();
 	}
 }
 
-function catAnalysis(){
-	if (humanMsg.indexOf("Pepsi") !== -1){
-		computerMsg = "That is strange. I was sure you were a coke person.";
-		questionTrack = "pespi";
-	}else if (humanMsg.indexOf("no") !== -1){
-		computerMsg = "Then you must be a reptile person. Do you like snakes?";
-		questionTrack = "snake";
+function sodapopAnalysis(){
+	if (humanMsg.indexOf("coke") !== -1){
+		computerMsg = "What's weird, you must be an alien. Are you from Neptune or Jupiter?";
+		questionTrack = "alienplanet";
+	}else if (humanMsg.indexOf("pepsi") !== -1){
+		computerMsg = "That's weird, you must be an alien Are you from Nepture or Juptier?";
+		questionTrack = "alienplanet"
 	}else {
 		genericResponse();
 	}
 }
 
-function dogOwnerAnalysis(){
-	if (humanMsg.indexOf("yes") !== -1){
-		computerMsg = "What is the name of your dog?";
-		questionTrack = "dogName";
-	}else if (humanMsg.indexOf("no") !== -1){
-		computerMsg = "I think you should get one. Do you prefer big or small dogs?";
-		questionTrack = "dogSize";
+// function creatureAnalysis(){
+// 	if (humanMsg.indexOf("Green") !== -1){
+// 		computerMsg = " Then you must be an amphibian person. Are you from Neptune or Jupiter?";
+// 		questionTrack = "creature";
+// 	}else if (humanMsg.indexOf("Hazel") !== -1){
+// 		computerMsg = "Then you must be a reptile person. Are you from Neptune or Jupiter?";
+// 		questionTrack = "creature";
+// 	}else {
+// 		genericResponse();
+// 	}
+// }
+
+function alienplanetAnalysis(){
+	if (humanMsg.indexOf("jupiter") !== -1){
+		computerMsg = "You must be warm. It's the fifth planet from the Sun.";
+		questionTrack = "Juptier";
+	}else if (humanMsg.indexOf("neptune") !== -1){
+		computerMsg = "You must be cold. It's the eighth planet from the Sun.";
+		questionTrack = "neptune";
 	}else {
 		genericResponse();
 	}
